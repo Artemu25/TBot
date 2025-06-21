@@ -1,6 +1,7 @@
-# Hello World Project
+# Echo Bot Project
 
-This repository contains a minimal Python project that prints "hello world".
+This repository contains a simple Telegram echo bot and a static page that can
+be served via GitHub Pages as a mini app.
 
 ## Requirements
 
@@ -15,20 +16,15 @@ Install the project using `uv`:
 uv sync
 ```
 
-Run the hello world program using `uv`:
-
-```bash
-uv run python -m hello_world
-```
-
 ## Echo Telegram Bot
 
-This project ships a simple echo bot written with
-[aiogram](https://github.com/aiogram/aiogram). Provide your bot token either via
-the `BOT_TOKEN` environment variable or the `--token` command line flag and run:
+The bot uses [aiogram](https://github.com/aiogram/aiogram). Provide your bot
+token via the `BOT_TOKEN` environment variable or the `--token` command line
+flag. To link the bot with your GitHub Pages mini app, pass the page URL via
+`WEBAPP_URL` or the `--webapp-url` option and run:
 
 ```bash
-uv run echo-bot --token <YOUR_BOT_TOKEN>
+uv run echo-bot --token <YOUR_BOT_TOKEN> --webapp-url https://<username>.github.io/<repo>/
 ```
 
 ## Testing
@@ -40,7 +36,6 @@ uv pip check
 uv run echo-bot --help
 timeout 5 uv run echo-bot --token invalid  # fails with TokenValidationError
 timeout 5 env BOT_TOKEN=$BOT_TOKEN uv run echo-bot  # starts the bot
-uv run hello-world
 ```
 
 ## Mini App
@@ -54,8 +49,10 @@ Open `docs/index.html` in your browser to test it locally.
 
 ### Deploy to GitHub Pages
 
-The workflow in `.github/workflows/pages.yml` automatically publishes the
-contents of `docs/` to GitHub Pages on every push to the `main` branch.
-Enable GitHub Pages for the repository with the **GitHub Actions** option and
-select the `main` branch. After the workflow completes, your mini app will be
-available at `https://<username>.github.io/<repo>/`.
+Enable GitHub Pages in the repository settings and select the `docs` folder from the `main` branch as the source. After GitHub publishes the site, your mini app will be available at `https://<username>.github.io/<repo>/`.
+
+Once the page is live, start the bot with the same URL so users can open it directly from Telegram:
+
+```bash
+env BOT_TOKEN=<YOUR_BOT_TOKEN> WEBAPP_URL=https://<username>.github.io/<repo>/ uv run echo-bot
+```

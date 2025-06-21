@@ -9,7 +9,7 @@ description = "A minimal Python project that prints hello world"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Codex"}]
-dependencies = ["python-telegram-bot>=20,<21"]
+dependencies = ["aiogram>=3,<4"]
 
 [tool.setuptools.packages.find]
 where = ["."]

@@ -1,33 +1,25 @@
-"""Entry point for the echo Telegram bot."""
+"""Entry point for the echo Telegram bot using aiogram."""
 from __future__ import annotations
 
 import argparse
+import asyncio
 import os
-from telegram import Update
-from telegram.ext import (
-    ApplicationBuilder,
-    CommandHandler,
-    MessageHandler,
-    ContextTypes,
-    filters,
-)
+
+from aiogram import Bot, Dispatcher, F, types
+from aiogram.filters import Command
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def start(message: types.Message) -> None:
     """Send a welcome message when the /start command is issued."""
-    await update.message.reply_text(
-        "Hello! Send me something and I'll echo it back to you."
-    )
+    await message.answer("Hello! Send me something and I'll echo it back to you.")
 
 
-async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def echo(message: types.Message) -> None:
     """Echo the user's message."""
-    if update.message is None:
-        return
-    await update.message.reply_text(update.message.text)
+    await message.answer(message.text)
 
 
-def main(argv: list[str] | None = None) -> None:
+async def _async_main(argv: list[str] | None = None) -> None:
     """Run the bot."""
     parser = argparse.ArgumentParser(description="Run the echo Telegram bot")
     parser.add_argument(
@@ -40,12 +32,18 @@ def main(argv: list[str] | None = None) -> None:
     if not token:
         raise RuntimeError("BOT_TOKEN environment variable not set and --token not provided")
 
-    application = ApplicationBuilder().token(token).build()
+    bot = Bot(token)
+    dp = Dispatcher()
 
-    application.add_handler(CommandHandler("start", start))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
+    dp.message(Command("start"))(start)
+    dp.message(F.text & ~F.command)(echo)
 
-    application.run_polling()
+    await dp.start_polling(bot)
+
+
+def main(argv: list[str] | None = None) -> None:
+    """Entry point for the console script."""
+    asyncio.run(_async_main(argv))
 
 
 if __name__ == "__main__":

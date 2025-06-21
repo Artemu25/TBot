@@ -42,3 +42,20 @@ timeout 5 uv run echo-bot --token invalid  # fails with TokenValidationError
 timeout 5 env BOT_TOKEN=$BOT_TOKEN uv run echo-bot  # starts the bot
 uv run hello-world
 ```
+
+## Mini App
+
+This repository also contains a small static mini app located in the `docs/` directory.
+It demonstrates how to deploy a simple HTML/JS application using **GitHub Pages**.
+
+### Local preview
+
+Open `docs/index.html` in your browser to test it locally.
+
+### Deploy to GitHub Pages
+
+The workflow in `.github/workflows/pages.yml` automatically publishes the
+contents of `docs/` to GitHub Pages on every push to the `main` branch.
+Enable GitHub Pages for the repository with the **GitHub Actions** option and
+select the `main` branch. After the workflow completes, your mini app will be
+available at `https://<username>.github.io/<repo>/`.

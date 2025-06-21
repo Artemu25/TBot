@@ -54,8 +54,4 @@ Open `docs/index.html` in your browser to test it locally.
 
 ### Deploy to GitHub Pages
 
-The workflow in `.github/workflows/pages.yml` automatically publishes the
-contents of `docs/` to GitHub Pages on every push to the `main` branch.
-Enable GitHub Pages for the repository with the **GitHub Actions** option and
-select the `main` branch. After the workflow completes, your mini app will be
-available at `https://<username>.github.io/<repo>/`.
+Enable GitHub Pages in the repository settings and select the `docs` folder from the `main` branch as the source. After GitHub publishes the site, your mini app will be available at `https://<username>.github.io/<repo>/`.

@@ -14,7 +14,7 @@ Create a virtual environment and install the project using `uv`:
 ```bash
 uv venv
 source .venv/bin/activate
-uv pip install -e .
+uv sync
 ```
 
 Run the program using `uv`:

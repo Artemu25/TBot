@@ -9,6 +9,12 @@ description = "A minimal Python project that prints hello world"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Codex"}]
+dependencies = ["python-telegram-bot>=20,<21"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hello_world", "echo_bot"]
 
 [project.scripts]
 hello-world = "hello_world.__main__:main"
+echo-bot = "echo_bot.__main__:main"

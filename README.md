@@ -15,8 +15,17 @@ Install the project using `uv`:
 uv sync
 ```
 
-Run the program using `uv`:
+Run the hello world program using `uv`:
 
 ```bash
 uv run python -m hello_world
+```
+
+## Echo Telegram Bot
+
+Provide your bot token either via the `BOT_TOKEN` environment variable or the
+`--token` command line flag and run:
+
+```bash
+uv run echo-bot --token <YOUR_BOT_TOKEN>
 ```

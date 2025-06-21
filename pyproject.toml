@@ -3,9 +3,9 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hello_world"
-version = "0.1.0"
-description = "A minimal Python project that prints hello world"
+name = "tbot"
+version = "0.2.0"
+description = "A minimal Telegram echo bot project"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Codex"}]
@@ -13,10 +13,9 @@ dependencies = ["aiogram>=3,<4"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["hello_world", "echo_bot"]
+include = ["echo_bot"]
 
 [project.scripts]
-hello-world = "hello_world.__main__:main"
 echo-bot = "echo_bot.__main__:main"
 
 [project.optional-dependencies]

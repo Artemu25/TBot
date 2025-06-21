@@ -1,6 +1,6 @@
-# Hello World Project
+# Telegram Bot Example
 
-This repository contains a minimal Python project that prints "hello world".
+This repository contains a simple echo bot built with [aiogram](https://github.com/aiogram/aiogram).
 
 ## Requirements
 
@@ -13,12 +13,6 @@ Install the project using `uv`:
 
 ```bash
 uv sync
-```
-
-Run the hello world program using `uv`:
-
-```bash
-uv run python -m hello_world
 ```
 
 ## Echo Telegram Bot
@@ -42,7 +36,6 @@ uv pip check
 uv run echo-bot --help
 timeout 5 uv run echo-bot --token invalid  # fails with TokenValidationError
 timeout 5 env BOT_TOKEN=$BOT_TOKEN uv run echo-bot  # starts the bot
-uv run hello-world
 ```
 
 ## Mini App

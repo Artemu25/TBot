@@ -18,3 +18,9 @@ include = ["hello_world", "echo_bot"]
 [project.scripts]
 hello-world = "hello_world.__main__:main"
 echo-bot = "echo_bot.__main__:main"
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-asyncio"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"

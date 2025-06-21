@@ -45,8 +45,8 @@ uv run hello-world
 
 ## Mini App
 
-This repository also contains a small static mini app located in the `docs/` directory.
-It demonstrates how to deploy a simple HTML/JS application using **GitHub Pages**.
+This repository also contains a small static page located in the `docs/` directory.
+It demonstrates how to deploy a simple HTML document using **GitHub Pages**.
 
 ### Local preview
 

@@ -9,11 +9,9 @@ This repository contains a minimal Python project that prints "hello world".
 
 ## Usage
 
-Create a virtual environment and install the project using `uv`:
+Install the project using `uv`:
 
 ```bash
-uv venv
-source .venv/bin/activate
 uv sync
 ```
 

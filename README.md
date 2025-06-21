@@ -25,10 +25,12 @@ uv run python -m hello_world
 
 This project ships a simple echo bot written with
 [aiogram](https://github.com/aiogram/aiogram). Provide your bot token either via
-the `BOT_TOKEN` environment variable or the `--token` command line flag and run:
+the `BOT_TOKEN` environment variable or the `--token` command line flag. To link
+the bot with your GitHub Pages mini app, pass the page URL via `WEBAPP_URL` or
+the `--webapp-url` option and run:
 
 ```bash
-uv run echo-bot --token <YOUR_BOT_TOKEN>
+uv run echo-bot --token <YOUR_BOT_TOKEN> --webapp-url https://<username>.github.io/<repo>/
 ```
 
 ## Testing
@@ -55,3 +57,9 @@ Open `docs/index.html` in your browser to test it locally.
 ### Deploy to GitHub Pages
 
 Enable GitHub Pages in the repository settings and select the `docs` folder from the `main` branch as the source. After GitHub publishes the site, your mini app will be available at `https://<username>.github.io/<repo>/`.
+
+Once the page is live, start the bot with the same URL so users can open it directly from Telegram:
+
+```bash
+env BOT_TOKEN=<YOUR_BOT_TOKEN> WEBAPP_URL=https://<username>.github.io/<repo>/ uv run echo-bot
+```

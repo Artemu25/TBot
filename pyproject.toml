@@ -9,15 +9,20 @@ description = "A minimal Python project that prints hello world"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [{name = "Codex"}]
-dependencies = ["aiogram>=3,<4"]
+dependencies = [
+    "aiogram>=3,<4",
+    "fastapi",
+    "uvicorn",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["hello_world", "echo_bot"]
+include = ["hello_world", "echo_bot", "mini_app"]
 
 [project.scripts]
 hello-world = "hello_world.__main__:main"
 echo-bot = "echo_bot.__main__:main"
+mini-app = "mini_app.__main__:main"
 
 [project.optional-dependencies]
 test = ["pytest>=7", "pytest-asyncio"]

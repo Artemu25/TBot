@@ -8,6 +8,7 @@ import os
 
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
+from functools import partial
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,24 @@ async def echo(message: types.Message) -> None:
     await message.answer(message.text)
 
 
+async def mini(message: types.Message, app_url: str | None) -> None:
+    """Send a button that opens the mini app."""
+    if not app_url:
+        await message.answer("Mini app URL not configured")
+        return
+    keyboard = types.InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                types.InlineKeyboardButton(
+                    text="Open Mini App", web_app=types.WebAppInfo(url=app_url)
+                )
+            ]
+        ]
+    )
+    logger.info("Sending mini app button to %s", message.from_user.id)
+    await message.answer("Open the mini app:", reply_markup=keyboard)
+
+
 async def _async_main(argv: list[str] | None = None) -> None:
     """Run the bot."""
     logging.basicConfig(level=logging.INFO)
@@ -32,6 +51,10 @@ async def _async_main(argv: list[str] | None = None) -> None:
     parser.add_argument(
         "--token",
         help="Telegram bot token (can also be set via BOT_TOKEN env var)",
+    )
+    parser.add_argument(
+        "--app-url",
+        help="URL where the mini app is hosted (can also be set via MINI_APP_URL)",
     )
     args = parser.parse_args(argv)
 
@@ -42,10 +65,13 @@ async def _async_main(argv: list[str] | None = None) -> None:
             "BOT_TOKEN environment variable not set and --token not provided"
         )
 
+    app_url = args.app_url or os.getenv("MINI_APP_URL")
+
     bot = Bot(token)
     dp = Dispatcher()
 
     dp.message(Command("start"))(start)
+    dp.message(Command("mini"))(partial(mini, app_url=app_url))
     dp.message(F.text & ~F.command)(echo)
 
     await dp.start_polling(bot)

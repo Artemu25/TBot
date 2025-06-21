@@ -1,5 +1,5 @@
 import pytest
-from echo_bot.__main__ import start, echo, _async_main
+from echo_bot.__main__ import start, echo, mini, _async_main
 
 
 class DummyUser:
@@ -12,9 +12,11 @@ class DummyMessage:
         self.text = text
         self.from_user = DummyUser(user_id)
         self.answered = None
+        self.reply_markup = None
 
-    async def answer(self, text: str):
+    async def answer(self, text: str, reply_markup=None):
         self.answered = text
+        self.reply_markup = reply_markup
 
 
 @pytest.mark.asyncio
@@ -29,6 +31,13 @@ async def test_echo_replies_with_same_text():
     msg = DummyMessage(text="echo")
     await echo(msg)
     assert msg.answered == "echo"
+
+
+@pytest.mark.asyncio
+async def test_mini_sends_button():
+    msg = DummyMessage()
+    await mini(msg, "https://example.com")
+    assert msg.reply_markup is not None
 
 
 @pytest.mark.asyncio

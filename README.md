@@ -31,6 +31,22 @@ the `BOT_TOKEN` environment variable or the `--token` command line flag and run:
 uv run echo-bot --token <YOUR_BOT_TOKEN>
 ```
 
+### Mini App
+
+The repository also includes a minimal Telegram mini app served with
+[FastAPI](https://fastapi.tiangolo.com/). Start the web server with:
+
+```bash
+uv run mini-app
+```
+
+Run the bot and pass the mini app URL via `--app-url` (or `MINI_APP_URL` env var)
+so the `/mini` command can open it:
+
+```bash
+uv run echo-bot --token <YOUR_BOT_TOKEN> --app-url http://localhost:8000
+```
+
 ## Testing
 
 You can verify that everything is installed correctly by running:

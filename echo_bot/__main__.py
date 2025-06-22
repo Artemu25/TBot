@@ -1,4 +1,5 @@
 """Entry point for the echo Telegram bot using aiogram."""
+
 from __future__ import annotations
 
 import argparse

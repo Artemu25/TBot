@@ -1,5 +1,9 @@
 # Repository Guidelines
 
+- This repository provides a Telegram mini-app.
+- The Python backend resides in the `echo_bot/` directory.
+- The static frontend lives in `docs/`.
+
 - **Python version**: 3.12+
 - **Install dependencies**: `uv sync`
 - (Optional) check for dependency conflicts with `uv pip check`.

@@ -13,6 +13,7 @@ Install the project using `uv`:
 
 ```bash
 uv sync
+uv sync --extra test  # include test dependencies
 ```
 
 ## Echo Telegram Bot
@@ -36,6 +37,7 @@ uv pip check
 uv run echo-bot --help  # optional, shows command usage
 timeout 5 uv run echo-bot --token invalid  # fails with TokenValidationError
 timeout 5 env BOT_TOKEN=$BOT_TOKEN uv run echo-bot  # starts the bot
+uv run pytest -q tests  # run the unit tests
 ```
 
 ## Mini App

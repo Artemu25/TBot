@@ -4,7 +4,7 @@ This repository contains a simple echo bot built with [aiogram](https://github.c
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.12+
 - [uv](https://github.com/astral-sh/uv) package manager
 
 ## Usage

@@ -7,7 +7,7 @@ name = "tbot"
 version = "0.2.0"
 description = "A minimal Telegram echo bot project"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 authors = [{name = "Codex"}]
 dependencies = ["aiogram>=3,<4"]
 

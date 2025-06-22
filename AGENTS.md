@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-- **Python version**: 3.8+
+- **Python version**: 3.12+
 - **Install dependencies**: `uv sync`
 - (Optional) check for dependency conflicts with `uv pip check`.
 - **Before committing**: run `pytest -q` within the `tests` directory.

@@ -17,10 +17,12 @@ uv sync
 
 ## Development dependencies
 
-Install extra packages for running the tests:
+The test suite depends on packages installed as uv development
+dependencies. See the [uv documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies)
+for details. These packages are included automatically when you run:
 
 ```bash
-uv sync --extra test
+uv sync
 ```
 
 ## Echo Telegram Bot

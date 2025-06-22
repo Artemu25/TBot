@@ -23,6 +23,12 @@ let pipes;
 let lastTime = 0;
 let lastPipe = 0;
 
+const GRAVITY = 0.3;
+const PIPE_SPEED = 1.5;
+const PIPE_GAP = 160;
+const PIPE_INTERVAL = 2000;
+const FLAP_STRENGTH = -6;
+
 app.mount('#app');
 
 function setupControls(app) {
@@ -44,7 +50,7 @@ function start(app) {
 }
 
 function flap() {
-  bird.v = -7;
+  bird.v = FLAP_STRENGTH;
 }
 
 function gameLoop(timestamp, app) {
@@ -59,7 +65,7 @@ function gameLoop(timestamp, app) {
 }
 
 function updateGame(timestamp, app) {
-  bird.v += 0.4;
+  bird.v += GRAVITY;
   bird.y += bird.v;
 
   if (bird.y + bird.h > canvas.height || bird.y < 0) {
@@ -69,7 +75,7 @@ function updateGame(timestamp, app) {
 
   for (let i = pipes.length - 1; i >= 0; i--) {
     const p = pipes[i];
-    p.x -= 2;
+    p.x -= PIPE_SPEED;
     if (
       bird.x < p.x + 50 &&
       bird.x + bird.w > p.x &&
@@ -83,14 +89,14 @@ function updateGame(timestamp, app) {
     }
   }
 
-  if (timestamp - lastPipe > 1500) {
+  if (timestamp - lastPipe > PIPE_INTERVAL) {
     addPipe();
     lastPipe = timestamp;
   }
 }
 
 function addPipe() {
-  const gap = 120;
+  const gap = PIPE_GAP;
   const min = 40;
   const max = canvas.height - gap - min;
   const top = Math.random() * (max - min) + min;

@@ -20,6 +20,10 @@ const app = Vue.createApp({
 let ctx, canvas;
 let bird;
 let pipes;
+const birdImg = new Image();
+birdImg.src = 'bird.webp';
+const pipeImg = new Image();
+pipeImg.src = 'pipe.png';
 let lastTime = 0;
 let lastPipe = 0;
 
@@ -28,6 +32,7 @@ const PIPE_SPEED = 1.5;
 const PIPE_GAP = 160;
 const PIPE_INTERVAL = 2000;
 const FLAP_STRENGTH = -3;
+const PIPE_WIDTH = 50;
 
 function setCanvasSize() {
   if (!canvas) {
@@ -52,7 +57,7 @@ function setupControls(app) {
 function start(app) {
   canvas = document.getElementById('gameCanvas');
   ctx = canvas.getContext('2d');
-  bird = { x: 50, y: canvas.height / 2, w: 20, h: 20, v: 0 };
+  bird = { x: 50, y: canvas.height / 2, w: 40, h: 40, v: 0 };
   pipes = [];
   lastTime = performance.now();
   lastPipe = lastTime;
@@ -87,14 +92,14 @@ function updateGame(timestamp, app) {
     const p = pipes[i];
     p.x -= PIPE_SPEED;
     if (
-      bird.x < p.x + 50 &&
+      bird.x < p.x + PIPE_WIDTH &&
       bird.x + bird.w > p.x &&
       (bird.y < p.top || bird.y + bird.h > p.bottom)
     ) {
       app.running = false;
       app.gameOver = true;
     }
-    if (p.x + 50 < 0) {
+    if (p.x + PIPE_WIDTH < 0) {
       pipes.splice(i, 1);
     }
   }
@@ -114,13 +119,14 @@ function addPipe() {
 }
 
 function drawGame() {
-  console.log('Drawing game state');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#FF0';
-  ctx.fillRect(bird.x, bird.y, bird.w, bird.h);
-  ctx.fillStyle = '#0F0';
+  ctx.drawImage(birdImg, bird.x, bird.y, bird.w, bird.h);
   for (const p of pipes) {
-    ctx.fillRect(p.x, 0, 50, p.top);
-    ctx.fillRect(p.x, p.bottom, 50, canvas.height - p.bottom);
+    ctx.drawImage(pipeImg, p.x, 0, PIPE_WIDTH, p.top);
+    ctx.save();
+    ctx.translate(p.x, p.bottom);
+    ctx.scale(1, -1);
+    ctx.drawImage(pipeImg, 0, 0, PIPE_WIDTH, canvas.height - p.bottom);
+    ctx.restore();
   }
 }

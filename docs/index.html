@@ -10,7 +10,7 @@
 <body>
     <div id="app">
         <h1>Vue Flappy Bird</h1>
-        <canvas id="gameCanvas" width="320" height="480"></canvas>
+        <canvas id="gameCanvas"></canvas>
         <div>
             <button @click="startGame" v-if="!running">Start</button>
             <p v-if="gameOver">Game Over. Click Start to play again.</p>

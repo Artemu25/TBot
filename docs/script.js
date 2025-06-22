@@ -1,3 +1,14 @@
-function changeTitle() {
-  document.querySelector('h1').textContent = 'С вас 1 миллион долларов';
-}
+const app = Vue.createApp({
+  data() {
+    return {
+      title: 'Hello Daria'
+    };
+  },
+  methods: {
+    changeTitle() {
+      this.title = 'С вас 1 миллион долларов';
+    }
+  }
+});
+
+app.mount('#app');

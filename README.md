@@ -45,7 +45,8 @@ It demonstrates how to deploy a simple HTML document using **GitHub Pages**.
 
 ### Local preview
 
-Open `docs/index.html` in your browser to test it locally.
+Open `docs/index.html` in your browser to test it locally. The page references
+`docs/styles.css` for its styling, so keep both files in the same directory.
 
 ### Deploy to GitHub Pages
 

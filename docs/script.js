@@ -23,11 +23,11 @@ let pipes;
 let lastTime = 0;
 let lastPipe = 0;
 
-const GRAVITY = 0.3;
+const GRAVITY = 0.1;
 const PIPE_SPEED = 1.5;
 const PIPE_GAP = 160;
 const PIPE_INTERVAL = 2000;
-const FLAP_STRENGTH = -6;
+const FLAP_STRENGTH = -3;
 
 app.mount('#app');
 
@@ -104,6 +104,7 @@ function addPipe() {
 }
 
 function drawGame() {
+  console.log('Drawing game state');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#FF0';
   ctx.fillRect(bird.x, bird.y, bird.w, bird.h);

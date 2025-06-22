@@ -29,6 +29,14 @@ const PIPE_GAP = 160;
 const PIPE_INTERVAL = 2000;
 const FLAP_STRENGTH = -3;
 
+function setCanvasSize() {
+  if (!canvas) {
+    canvas = document.getElementById('gameCanvas');
+  }
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 app.mount('#app');
 
 function setupControls(app) {
@@ -37,6 +45,8 @@ function setupControls(app) {
   });
   canvas = document.getElementById('gameCanvas');
   canvas.addEventListener('click', flap);
+  setCanvasSize();
+  window.addEventListener('resize', setCanvasSize);
 }
 
 function start(app) {

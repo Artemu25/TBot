@@ -15,6 +15,16 @@ Install the project using `uv`:
 uv sync
 ```
 
+## Development dependencies
+
+The test suite depends on packages installed as uv development
+dependencies. See the [uv documentation](https://docs.astral.sh/uv/concepts/projects/dependencies/#development-dependencies)
+for details. These packages are included automatically when you run:
+
+```bash
+uv sync
+```
+
 ## Echo Telegram Bot
 
 This project ships a simple echo bot written with
@@ -36,6 +46,7 @@ uv pip check
 uv run echo-bot --help  # optional, shows command usage
 timeout 5 uv run echo-bot --token invalid  # fails with TokenValidationError
 timeout 5 env BOT_TOKEN=$BOT_TOKEN uv run echo-bot  # starts the bot
+uv run pytest -q tests  # run the unit tests
 ```
 
 ## Mini App

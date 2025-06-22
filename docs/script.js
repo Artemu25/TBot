@@ -17,13 +17,13 @@ const app = Vue.createApp({
   }
 });
 
-app.mount('#app');
-
 let ctx, canvas;
 let bird;
 let pipes;
 let lastTime = 0;
 let lastPipe = 0;
+
+app.mount('#app');
 
 function setupControls(app) {
   document.addEventListener('keydown', (e) => {

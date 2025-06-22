@@ -13,7 +13,14 @@ Install the project using `uv`:
 
 ```bash
 uv sync
-uv sync --extra test  # include test dependencies
+```
+
+## Development dependencies
+
+Install extra packages for running the tests:
+
+```bash
+uv sync --extra test
 ```
 
 ## Echo Telegram Bot

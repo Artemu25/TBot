@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phaser Bird</title>
+    <title>Phaser Flappy Bird Clone</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
     <style>
-        html, body {
+        body {
             margin: 0;
-            padding: 0;
-            height: 100%;
+            background: #222;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
         }
-        #game {
-            width: 100%;
-            height: 100%;
+        canvas {
+            display: block;
+            margin: 0 auto;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
 </head>
 <body>
-    <div id="game"></div>
-    <script src="main.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ const CONFIG = {
         width: window.innerWidth,
         height: window.innerHeight
     },
+    backgroundColor: '#70c5ce',
     physics: {
         default: 'arcade',
         arcade: {
@@ -25,6 +26,7 @@ let started = false;
 const PIPE_SPEED = -200;
 const PIPE_GAP = 150;
 const PIPE_INTERVAL = 1500;
+const PIPE_WIDTH = 60;
 const BIRD_SIZE = 30;
 
 new Phaser.Game(CONFIG);
@@ -69,6 +71,7 @@ function startGame() {
         callbackScope: this,
         loop: true
     });
+    addPipes.call(this);
 }
 
 function flap() {
@@ -81,8 +84,8 @@ function addPipes() {
     const topHeight = Phaser.Math.Between(50, height - PIPE_GAP - 50);
     const bottomHeight = height - topHeight - PIPE_GAP;
 
-    const top = this.add.rectangle(width, 0, 50, topHeight, 0x00ff00).setOrigin(0, 0);
-    const bottom = this.add.rectangle(width, height - bottomHeight, 50, bottomHeight, 0x00ff00).setOrigin(0, 0);
+    const top = this.add.rectangle(width, 0, PIPE_WIDTH, topHeight, 0x00ff00).setOrigin(0, 0);
+    const bottom = this.add.rectangle(width, height - bottomHeight, PIPE_WIDTH, bottomHeight, 0x00ff00).setOrigin(0, 0);
 
     this.physics.add.existing(top);
     this.physics.add.existing(bottom);
@@ -100,8 +103,13 @@ function addPipes() {
 }
 
 function hitPipe() {
-    this.scene.restart();
+    gameOverText.setText('Game Over - Click to Restart');
     started = false;
+    pipeTimer.remove(false);
+    bird.body.setVelocity(0);
+    Phaser.Actions.Call(pipes.getChildren(), function (pipe) {
+        pipe.body.setVelocityX(0);
+    });
 }
 
 function update() {

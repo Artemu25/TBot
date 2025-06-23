@@ -80,12 +80,16 @@ function flap() {
 }
 
 function addPipes() {
-    const { width, height } = this.scale;
+    const { width, height } = this.cameras.main;
     const topHeight = Phaser.Math.Between(50, height - PIPE_GAP - 50);
     const bottomHeight = height - topHeight - PIPE_GAP;
 
-    const top = this.add.rectangle(width, 0, PIPE_WIDTH, topHeight, 0x00ff00).setOrigin(0, 0);
-    const bottom = this.add.rectangle(width, height - bottomHeight, PIPE_WIDTH, bottomHeight, 0x00ff00).setOrigin(0, 0);
+    const top = this.add.rectangle(width, 0, PIPE_WIDTH, topHeight, 0x00ff00)
+        .setOrigin(0, 0)
+        .setStrokeStyle(2, 0x003300);
+    const bottom = this.add.rectangle(width, height - bottomHeight, PIPE_WIDTH, bottomHeight, 0x00ff00)
+        .setOrigin(0, 0)
+        .setStrokeStyle(2, 0x003300);
 
     this.physics.add.existing(top);
     this.physics.add.existing(bottom);
